@@ -1,9 +1,9 @@
 package com.openfaas;
 
-public class Handler {
+public class Handler implements FunctionService {
 
-    public String Handle(String request) {
-
-        return "Hello world!";
-    }
+	@Override
+	public String handle(String request) {
+		return "Hello world!";
+	}
 }
