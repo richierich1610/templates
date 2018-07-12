@@ -5,7 +5,18 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at https://docs.gradle.org/4.8.1/userguide/tutorial_java_projects.html
  */
-
+buildscript {
+repositories {
+jcenter()
+mavenCentral()
+maven{
+    url 'https://plugins.gradle.org/m2/'
+    }
+}
+dependencies{
+classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
+}
+}
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
@@ -13,13 +24,12 @@ plugins {
     // Apply the application plugin to add support for building an application
     id 'application'
 }
-
+apply plugin: "com.github.johnrengelman.shadow"
 // Define the main class for the application
 mainClassName = 'App'
 
 dependencies {
-    compile files('libs/com.openfaas.jar')
-
+	compile files('libs/function-service.jar')
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
 }
