@@ -18,10 +18,12 @@ public class Response implements IResponse {
         this.headers = new HashMap<String, String>();
     }
 
+    @Override
     public Map<String, String> getHeaders() {
         return this.headers;
     }
 
+    @Override
     public void setHeader(String key, String value) {
         if(value == null) {
             if(this.headers.containsKey(key)) {
@@ -32,6 +34,7 @@ public class Response implements IResponse {
         this.headers.put(key, value);
     }
 
+    @Override
     public String getHeader(String key) {
         if(!this.headers.containsKey(key)) {
             return null;
@@ -40,18 +43,22 @@ public class Response implements IResponse {
         return this.headers.get(key);
     }
 
+    @Override
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
 
+    @Override
     public String getContentType() {
         return this.contentType;
     }
 
+    @Override
     public void setBody(String body) {
         this.body = body;
     }
 
+    @Override
     public String getBody() {
         return this.body;
     }
