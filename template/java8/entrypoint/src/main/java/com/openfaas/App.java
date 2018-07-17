@@ -6,7 +6,7 @@ package com.openfaas.entrypoint;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-
+import java.io.UnsupportedEncodingException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.ByteArrayOutputStream;
@@ -111,6 +111,7 @@ public class App {
 
                     String key = null;
                     String value = null;
+                    try{
                     if (param.length > 0) {
                         key = URLDecoder.decode(param[0],
                             System.getProperty("file.encoding"));
@@ -121,6 +122,11 @@ public class App {
                             System.getProperty("file.encoding"));
                     }
                     reqParametersMap.put(key, value);
+                    }
+                    catch(UnsupportedEncodingException e)
+                    {
+                    	//need to check
+                    }
                 }
             }
         	return reqParametersMap;
